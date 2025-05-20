@@ -1,73 +1,29 @@
-# Welcome to your Lovable project
+<p align="center">
+  <a href="https://liferadio.ci/" target="blank"><img src="https://liferadio.ci/wp-content/uploads/2022/05/Fichier-1@2x-50.jpg" width="200" alt="Nest Logo" /></a>
+</p>
 
-## Project info
+  <p align="center">Le code source du tableau de bord d'administration de l'application mobile de <a href="http://nodejs.org" target="_blank">Life Radio</a>. Cette application backend a été conçu avec React.</p>
 
-**URL**: https://lovable.dev/projects/61a0526e-b85a-4d93-aa05-5e7b0469a582
+## Description
 
-## How can I edit this code?
+[Life Radio](https://liferadio.ci/) Dashboard repository.
 
-There are several ways of editing your application.
+## Installation
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/61a0526e-b85a-4d93-aa05-5e7b0469a582) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```bash
+$ git clone https://github.com/oraclerevolution/life-radio-admin-dashboard.git
+$ npm install
 ```
 
-**Edit a file directly in GitHub**
+## Lancement de l'application
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+# development
+$ npm run dev
+```
 
-**Use GitHub Codespaces**
+## Stay in touch
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Author - [Assia Jean N'Goran](https://www.linkedin.com/in/assia-jean-gontran/)
+- Site web - [https://liferadio.ci/](https://liferadio.ci/)
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/61a0526e-b85a-4d93-aa05-5e7b0469a582) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
