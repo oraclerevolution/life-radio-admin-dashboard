@@ -7,6 +7,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Plus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Replay, ReplayPlaylist } from "@/types";
+import { ReplayForm } from "@/components/modals/ReplayForm";
+import { ReplayPlaylistForm } from "@/components/modals/ReplayPlaylistForm";
 
 // Données fictives pour simulation
 const mockPlaylists: ReplayPlaylist[] = [
@@ -77,7 +79,8 @@ const ReplaysPage = () => {
   const [activeTab, setActiveTab] = useState<string>("emissions");
   const [playlists, setPlaylists] = useState<ReplayPlaylist[]>(mockPlaylists);
   const [replays, setReplays] = useState<Replay[]>(mockReplays);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isReplayModalOpen, setIsReplayModalOpen] = useState<boolean>(false);
+  const [isPlaylistModalOpen, setIsPlaylistModalOpen] = useState<boolean>(false);
 
   // Colonnes pour la table des playlists
   const playlistColumns = [
@@ -154,6 +157,14 @@ const ReplaysPage = () => {
     });
   };
 
+  const handleAddButtonClick = () => {
+    if (activeTab === "emissions") {
+      setIsReplayModalOpen(true);
+    } else {
+      setIsPlaylistModalOpen(true);
+    }
+  };
+
   return (
     <Dashboard>
       <div className="space-y-6">
@@ -162,7 +173,7 @@ const ReplaysPage = () => {
             <h1 className="text-3xl font-bold">Replays</h1>
             <p className="text-muted-foreground">Gérez vos replays et playlists</p>
           </div>
-          <Button onClick={() => setIsModalOpen(true)}>
+          <Button onClick={handleAddButtonClick}>
             <Plus className="h-4 w-4 mr-2" />
             Nouveau
           </Button>
@@ -191,6 +202,18 @@ const ReplaysPage = () => {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Modals */}
+      <ReplayForm 
+        open={isReplayModalOpen}
+        onClose={() => setIsReplayModalOpen(false)}
+        playlists={playlists}
+      />
+      
+      <ReplayPlaylistForm
+        open={isPlaylistModalOpen}
+        onClose={() => setIsPlaylistModalOpen(false)}
+      />
     </Dashboard>
   );
 };

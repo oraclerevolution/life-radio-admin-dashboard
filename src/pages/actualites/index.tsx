@@ -7,6 +7,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Plus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { News, NewsCategory } from "@/types";
+import { NewsForm } from "@/components/modals/NewsForm";
+import { CategoryForm } from "@/components/modals/CategoryForm";
 
 // Données fictives pour simulation
 const mockCategories: NewsCategory[] = [
@@ -50,9 +52,8 @@ const ActualitesPage = () => {
   const [activeTab, setActiveTab] = useState<string>("articles");
   const [categories, setCategories] = useState<NewsCategory[]>(mockCategories);
   const [news, setNews] = useState<News[]>(mockNews);
-  const [editingCategory, setEditingCategory] = useState<NewsCategory | null>(null);
-  const [editingNews, setEditingNews] = useState<News | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isNewsModalOpen, setIsNewsModalOpen] = useState<boolean>(false);
+  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState<boolean>(false);
 
   // Colonnes pour la table des catégories
   const categoryColumns = [
@@ -89,7 +90,6 @@ const ActualitesPage = () => {
   ];
 
   const handleEditCategory = (category: NewsCategory) => {
-    setEditingCategory(category);
     // Ici s'afficherait un modal d'édition
     toast({
       title: "Fonction à implémenter",
@@ -106,7 +106,6 @@ const ActualitesPage = () => {
   };
 
   const handleEditNews = (news: News) => {
-    setEditingNews(news);
     // Ici s'afficherait un modal d'édition
     toast({
       title: "Fonction à implémenter",
@@ -122,6 +121,14 @@ const ActualitesPage = () => {
     });
   };
 
+  const handleAddButtonClick = () => {
+    if (activeTab === "articles") {
+      setIsNewsModalOpen(true);
+    } else {
+      setIsCategoryModalOpen(true);
+    }
+  };
+
   return (
     <Dashboard>
       <div className="space-y-6">
@@ -130,7 +137,7 @@ const ActualitesPage = () => {
             <h1 className="text-3xl font-bold">Actualités</h1>
             <p className="text-muted-foreground">Gérez vos actualités et catégories</p>
           </div>
-          <Button onClick={() => setIsModalOpen(true)}>
+          <Button onClick={handleAddButtonClick}>
             <Plus className="h-4 w-4 mr-2" />
             Nouveau
           </Button>
@@ -159,6 +166,18 @@ const ActualitesPage = () => {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Modals */}
+      <NewsForm 
+        open={isNewsModalOpen} 
+        onClose={() => setIsNewsModalOpen(false)} 
+        categories={categories}
+      />
+      
+      <CategoryForm 
+        open={isCategoryModalOpen} 
+        onClose={() => setIsCategoryModalOpen(false)}
+      />
     </Dashboard>
   );
 };

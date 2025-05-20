@@ -7,6 +7,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Plus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Podcast, PodcastPlaylist } from "@/types";
+import { PodcastForm } from "@/components/modals/PodcastForm";
+import { PodcastPlaylistForm } from "@/components/modals/PodcastPlaylistForm";
 
 // Données fictives pour simulation
 const mockPlaylists: PodcastPlaylist[] = [
@@ -74,7 +76,8 @@ const PodcastsPage = () => {
   const [activeTab, setActiveTab] = useState<string>("episodes");
   const [playlists, setPlaylists] = useState<PodcastPlaylist[]>(mockPlaylists);
   const [podcasts, setPodcasts] = useState<Podcast[]>(mockPodcasts);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isPodcastModalOpen, setIsPodcastModalOpen] = useState<boolean>(false);
+  const [isPlaylistModalOpen, setIsPlaylistModalOpen] = useState<boolean>(false);
 
   // Colonnes pour la table des playlists
   const playlistColumns = [
@@ -151,6 +154,14 @@ const PodcastsPage = () => {
     });
   };
 
+  const handleAddButtonClick = () => {
+    if (activeTab === "episodes") {
+      setIsPodcastModalOpen(true);
+    } else {
+      setIsPlaylistModalOpen(true);
+    }
+  };
+
   return (
     <Dashboard>
       <div className="space-y-6">
@@ -159,7 +170,7 @@ const PodcastsPage = () => {
             <h1 className="text-3xl font-bold">Podcasts</h1>
             <p className="text-muted-foreground">Gérez vos podcasts et playlists</p>
           </div>
-          <Button onClick={() => setIsModalOpen(true)}>
+          <Button onClick={handleAddButtonClick}>
             <Plus className="h-4 w-4 mr-2" />
             Nouveau
           </Button>
@@ -188,6 +199,18 @@ const PodcastsPage = () => {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Modals */}
+      <PodcastForm 
+        open={isPodcastModalOpen}
+        onClose={() => setIsPodcastModalOpen(false)}
+        playlists={playlists}
+      />
+      
+      <PodcastPlaylistForm
+        open={isPlaylistModalOpen}
+        onClose={() => setIsPlaylistModalOpen(false)}
+      />
     </Dashboard>
   );
 };

@@ -6,6 +6,7 @@ import { DataTable } from "@/components/ui/data-table";
 import { Plus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Video } from "@/types";
+import { VideoForm } from "@/components/modals/VideoForm";
 
 // Données fictives pour simulation
 const mockVideos: Video[] = [
@@ -41,7 +42,7 @@ const mockVideos: Video[] = [
 const VideosPage = () => {
   const { toast } = useToast();
   const [videos, setVideos] = useState<Video[]>(mockVideos);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState<boolean>(false);
 
   // Colonnes pour la table des vidéos
   const videoColumns = [
@@ -99,7 +100,7 @@ const VideosPage = () => {
             <h1 className="text-3xl font-bold">Vidéos</h1>
             <p className="text-muted-foreground">Gérez vos vidéos YouTube</p>
           </div>
-          <Button onClick={() => setIsModalOpen(true)}>
+          <Button onClick={() => setIsVideoModalOpen(true)}>
             <Plus className="h-4 w-4 mr-2" />
             Nouvelle vidéo
           </Button>
@@ -110,6 +111,12 @@ const VideosPage = () => {
           columns={videoColumns}
           onEdit={handleEditVideo}
           onDelete={handleDeleteVideo}
+        />
+        
+        {/* Modal */}
+        <VideoForm 
+          open={isVideoModalOpen}
+          onClose={() => setIsVideoModalOpen(false)}
         />
       </div>
     </Dashboard>
